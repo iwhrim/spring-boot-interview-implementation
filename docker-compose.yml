@@ -1,0 +1,39 @@
+version: '3'
+services:
+
+  mongo:
+    image: mongo:3.2.4
+    container_name: mongo
+    ports:
+    - 27017:27017
+    restart: always
+
+#   user:
+#     build:
+#       context: ./user
+#       dockerfile: Dockerfile
+#     ports: 
+#       - "8080:8080"
+#     networks: 
+#       - media-challenge
+#     depends_on: 
+#       - mysql
+#     restart: always
+#     networks: 
+#       - mediachallenge
+
+#   media:
+#     build:
+#       context: ./media
+#       dockerfile: Dockerfile
+#     ports: 
+#       - "8081:8081"
+#     networks: 
+#       - mediachallenge
+#     depends_on: 
+#       - mongo
+#     restart: always
+
+# networks: 
+#   mediachallenge:
+# docker run -d -e MYSQL_USER=mediachallenge -e MYSQL_PASSWORD=mediachallenge -e MYSQL_DATABASE=mediachallenge -e MYSQL_ROOT_PASSWORD=mediachallenge -p 3306:3306 --name mysql mysql:8
