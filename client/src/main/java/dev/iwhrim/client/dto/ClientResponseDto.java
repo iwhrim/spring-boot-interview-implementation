@@ -2,6 +2,7 @@ package dev.iwhrim.client.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +19,7 @@ public class ClientResponseDto {
     private String liveCity;
 
     public void calculateAge() {
-        LocalDate birth = LocalDate.parse(this.birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate birth = LocalDate.parse(this.birthDate, DateTimeFormatter.ISO_ZONED_DATE_TIME);
         this.setAge(Period.between(birth, LocalDate.now()).getYears());
     }
 

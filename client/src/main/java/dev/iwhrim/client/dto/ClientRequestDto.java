@@ -16,7 +16,8 @@ public class ClientRequestDto extends ClientMapper {
 
     @NotNull @NotEmpty private String completeName;
     @NotNull @NotEmpty private String sex;
-    private String birthDate;
+    @JsonFormat
+    @NotNull @NotEmpty private String birthDate;
     @NotNull @NotEmpty private String liveCity;
 
 }

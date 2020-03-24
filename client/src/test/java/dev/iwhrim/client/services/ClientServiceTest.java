@@ -14,6 +14,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +37,9 @@ public class ClientServiceTest {
         ClientRequestDto clientRequestDto = new ClientRequestDto(
                 "User name",
                 "Male",
-                "2000-01-01",
+                //ZonedDateTime.of(LocalDateTime.now(), ZoneId.systemDefault()),
+//                "2000-03-24T14:09:08.855-03:00[America/Sao_Paulo]",
+                ZonedDateTime.parse("2000-01-01T01:00+02:00").toString(),
                 "City Name"
         );
         Client savedClient = clientRequestDto.toClient();
