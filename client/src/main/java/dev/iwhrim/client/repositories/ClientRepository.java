@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ClientRepository extends MongoRepository<Client, String> {
+
     public List<Client> findAllByCompleteNameContaining(String name);
+
 }

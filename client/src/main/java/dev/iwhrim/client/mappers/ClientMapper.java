@@ -13,7 +13,9 @@ public abstract class ClientMapper {
 
     public ClientResponseDto toResponseDto() {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(this, ClientResponseDto.class);
+        ClientResponseDto clientResponseDto = modelMapper.map(this, ClientResponseDto.class);
+        clientResponseDto.calculateAge();
+        return clientResponseDto;
     }
 
 }

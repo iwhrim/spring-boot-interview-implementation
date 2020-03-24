@@ -1,22 +1,21 @@
 package dev.iwhrim.client.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.iwhrim.client.mappers.ClientMapper;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.util.Date;
-
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "clients")
 public class Client extends ClientMapper {
+
     @Id
     private String id;
-
     private String completeName;
     private String sex;
     private String birthDate;

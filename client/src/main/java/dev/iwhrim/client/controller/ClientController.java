@@ -28,12 +28,27 @@ public class ClientController {
 
     @GetMapping
     public ResponseEntity<List<ClientResponseDto>> getClientByName(@NotNull @NotEmpty @RequestParam(value = "name") String name) {
-        List<ClientResponseDto> clientsListByName = clientService.getClientByName(name);
-        return new ResponseEntity<>(clientsListByName, HttpStatus.OK);
+        List<ClientResponseDto> clientResponseDtoList = clientService.getClientByName(name);
+        return new ResponseEntity<>(clientResponseDtoList, HttpStatus.OK);
     }
 
-//     TODO: 24/03/2020
-//    @GetMapping("/{id}")
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> getClientById(@PathVariable(value = "id") String id) {
+        ClientResponseDto clientResponseDto = clientService.getClientById(id);
+        return new ResponseEntity<>(clientResponseDto, HttpStatus.OK);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> changeClientName(@PathVariable(value = "id") String id,
+                                                              @NotNull @NotEmpty @RequestParam(value = "name") String name) {
+        ClientResponseDto clientResponseDto = clientService.changeClientName(id, name);
+        return new ResponseEntity<>(clientResponseDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteClient(@PathVariable(value = "id") String id) {
+        clientService.removeClient(id);
+        return ResponseEntity.ok().build();
+    }
 
 }
