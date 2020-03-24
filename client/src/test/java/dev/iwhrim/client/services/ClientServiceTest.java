@@ -1,7 +1,6 @@
 package dev.iwhrim.client.services;
 
-public interface ClientService {
 
-
+public class ClientServiceTest {
 
 }

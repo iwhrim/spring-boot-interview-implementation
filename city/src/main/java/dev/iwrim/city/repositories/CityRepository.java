@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CityRepository extends MongoRepository<City, String> {
     public List<CityResponseDto> findAllCityByNameContaining(String name);
-    public List<CityResponseDto> findAllCityByStateContaining(String name);
+    public List<CityResponseDto> findAllCityByStateContaining(String state);
 
 }

@@ -3,6 +3,6 @@ server:
 spring:
   data:
     mongodb:
-      database: mediachallenge
+      database: finalchallenge
       host: localhost
       port: 27017
