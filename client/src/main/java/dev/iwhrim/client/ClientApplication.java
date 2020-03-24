@@ -24,14 +24,7 @@ public class ClientApplication {
 	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-
 		return new MappingJackson2HttpMessageConverter(mapper);
-	}
-	@Bean
-	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
-		return builder -> {
-			builder.serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)));
-		};
 	}
 
 }

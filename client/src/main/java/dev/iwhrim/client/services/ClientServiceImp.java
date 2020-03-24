@@ -7,23 +7,31 @@ import dev.iwhrim.client.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class ClientServiceImp {
+public class ClientServiceImp implements ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
 
     public ClientResponseDto saveClient(ClientRequestDto clientRequestDto) {
-        System.out.println("clientRequestDto = " + clientRequestDto.toString());
         Client client = clientRequestDto.toClient();
-        System.out.println("client = " + client.toString());
         Client savedClient = clientRepository.save(client);
-        System.out.println("savedClient = " + savedClient.toString());
         ClientResponseDto clientResponseDto = savedClient.toResponseDto();
-        System.out.println("clientResponseDto = " + clientResponseDto.toString());
         clientResponseDto.calculateAge();
         return clientResponseDto;
     }
 
+    public List<ClientResponseDto> getClientByName(String name) {
+        List<Client> clients = clientRepository.findAllByCompleteNameContaining(name);
+        List<ClientResponseDto> clientResponseList = new ArrayList<>();
+        clients.forEach(client -> {
+            clientResponseList.add(client.toResponseDto());
+        });
+        clientResponseList.forEach(ClientResponseDto::calculateAge);
+        return clientResponseList;
+    }
 
 }
