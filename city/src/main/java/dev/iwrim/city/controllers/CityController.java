@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ public class CityController {
         List<CityResponseDto> result = new ArrayList<>();
         if (!name.isEmpty() && name != null) result.addAll(cityService.findCityByName(name));
         return new ResponseEntity<>(result, HttpStatus.OK);
-
     }
 
     @GetMapping("/state/{state}")
