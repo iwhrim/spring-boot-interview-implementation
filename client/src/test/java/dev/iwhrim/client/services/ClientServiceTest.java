@@ -38,7 +38,7 @@ public class ClientServiceTest {
     public ClientRequestDto clientRequestDto = new ClientRequestDto(
             "User name",
             "Male",
-            ZonedDateTime.parse("2000-01-03T10:15:30+01:00[Europe/Paris]").toString(),
+            "2000-01-03T10:15:30+01:00[Europe/Paris]",
             "City Name"
     );
 

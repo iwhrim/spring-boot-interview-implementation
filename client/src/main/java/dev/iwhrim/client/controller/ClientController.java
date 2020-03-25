@@ -2,6 +2,7 @@ package dev.iwhrim.client.controller;
 
 import dev.iwhrim.client.dto.ClientRequestDto;
 import dev.iwhrim.client.dto.ClientResponseDto;
+import dev.iwhrim.client.exceptions.InvalidParameterValueException;
 import dev.iwhrim.client.services.ClientServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -27,7 +29,8 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClientResponseDto>> getClientByName(@NotNull @NotEmpty @RequestParam(value = "name") String name) {
+    public ResponseEntity<List<ClientResponseDto>> getClientByName(@NotNull @RequestParam(value = "name") String name) {
+        if (name.isEmpty()) throw new InvalidParameterValueException();
         List<ClientResponseDto> clientResponseDtoList = clientService.getClientByName(name);
         return new ResponseEntity<>(clientResponseDtoList, HttpStatus.OK);
     }
