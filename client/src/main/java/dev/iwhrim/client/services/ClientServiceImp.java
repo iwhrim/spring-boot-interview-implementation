@@ -3,6 +3,7 @@ package dev.iwhrim.client.services;
 import dev.iwhrim.client.dto.ClientRequestDto;
 import dev.iwhrim.client.dto.ClientResponseDto;
 import dev.iwhrim.client.entities.Client;
+import dev.iwhrim.client.exceptions.ClientNotFoundException;
 import dev.iwhrim.client.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class ClientServiceImp implements ClientService {
     @Override
     public ClientResponseDto getClientById(String id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
-        if (!optionalClient.isPresent()) throw new RuntimeException();
+        if (!optionalClient.isPresent()) throw new ClientNotFoundException();
         return optionalClient.get().toResponseDto();
     }
 
@@ -46,7 +47,7 @@ public class ClientServiceImp implements ClientService {
     @Override
     public ClientResponseDto changeClientName(String id, String newName) {
         Optional<Client> optionalClient = clientRepository.findById(id);
-        if (!optionalClient.isPresent()) throw new RuntimeException();
+        if (!optionalClient.isPresent()) throw new ClientNotFoundException();
 
         Client client = optionalClient.get();
         client.setCompleteName(newName);
