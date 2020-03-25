@@ -21,12 +21,7 @@ public class ClientResponseDto {
     private String liveCity;
 
     public void calculateAge() {
-        LocalDate birth;
-        try {
-            birth = LocalDate.parse(this.birthDate, DateTimeFormatter.ISO_ZONED_DATE_TIME);
-        } catch (DateTimeParseException ex) {
-            throw new InvalidDateTimeFormatException();
-        }
+        LocalDate birth = LocalDate.parse(this.birthDate, DateTimeFormatter.ISO_ZONED_DATE_TIME);
         this.setAge(Period.between(birth, LocalDate.now()).getYears());
     }
 
