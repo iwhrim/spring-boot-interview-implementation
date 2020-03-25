@@ -10,9 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.Optional;
-
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -60,6 +58,5 @@ public class ExceptionsTests {
         Assertions.assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() ->  clientController.postClient(clientRequestDto));
     }
-
 
 }

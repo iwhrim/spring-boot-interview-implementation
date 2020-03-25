@@ -44,6 +44,7 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity<ClientResponseDto> changeClientName(@PathVariable(value = "id") String id,
                                                               @NotNull @RequestParam(value = "name") String name) {
+        if (name.isEmpty() || !name.matches("[A-Za-z ]*")) throw new InvalidParameterValueException();
         ClientResponseDto clientResponseDto = clientService.changeClientName(id, name);
         return new ResponseEntity<>(clientResponseDto, HttpStatus.OK);
     }

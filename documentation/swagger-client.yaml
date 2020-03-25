@@ -1,0 +1,214 @@
+swagger: '2.0'
+info:
+  description: This is a microservice documentation for the Fast Track's final challenge.
+  version: v1
+  title: Client REST API
+  termsOfService: Terms of service
+  contact:
+    name: Gustavo Teixeira
+    url: 'https://www.compasso.com.br'
+    email: gustavoteixeira@compasso.com.br
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+host: 'localhost:8081'
+basePath: /
+
+tags:
+  - name: client-controller
+    description: Client Controller to control requests to /client
+
+paths:
+
+  /clients:
+
+    post:
+      tags:
+        - client-controller
+      summary: Method to post a new client
+      operationId: postClientUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: clientRequestDto
+          description: The client data to be saved.
+          required: true
+          schema:
+            $ref: '#/definitions/ClientRequestDto'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/ClientResponseDto'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+
+    get:
+      tags:
+        - client-controller
+      summary: Method to get clients by name
+      operationId: getClientByNameUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: query
+          description: Name of the client you wish to get.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientResponseDto'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+
+  /clients/{id}:
+
+    get:
+      tags:
+        - client-controller
+      summary: Method to get a client by id
+      operationId: getClientByIdUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of the client 
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ClientResponseDto'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+    
+    put:
+      tags:
+        - client-controller
+      summary: Method to change a client name
+      operationId: changeClientNameUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of the client
+          required: true
+          type: string
+        - name: name
+          in: query
+          description: New complete name of the client
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ClientResponseDto'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+
+    delete:
+      tags:
+        - client-controller
+      summary: Method to delete a client by id
+      operationId: deleteClientUsingDELETE
+      produces:
+        - ''
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier of the client
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      deprecated: false
+
+definitions:
+
+  ClientRequestDto:
+    type: object
+    properties:
+      completeName:
+        type: string
+        example: John Wick
+        description: Complete name of the client.
+      sex:
+        type: string
+        example: Male
+        description: Sex of the client. Must be Male or Female.
+      birthDate:
+        type: string
+        example: "1970-01-01T00:00:00+03:00"
+        description: A Zoned Date Time format that represents the client birth date.
+      liveCity:
+        type: string
+        example: Curitiba
+        description: City name of where the client lives.
+    title: Client Request Data Transfer Object
+  
+  ClientResponseDto:
+    type: object
+    properties:
+      id:
+        type: string
+        example: 5e7ba5a04905720dc13364d5
+        description: Unique identifier of the client.
+      completeName:
+        type: string
+        example: John Wick
+        description: Complete name of the client.
+      sex:
+        type: string
+        example: Male
+        description: Sex of the client. Must be Male or Female.
+      birthDate:
+        type: string
+        example: "1970-01-01T00:00:00+03:00"
+        description: A Zoned Date Time format that represents the client birth date.
+      liveCity:
+        type: string
+        example: Curitiba
+        description: City name of where the client lives.
+      age:
+        type: integer
+        format: int32
+        example: 50
+        description: Age of the client.
+    title: Client Response Data Transfer Object
