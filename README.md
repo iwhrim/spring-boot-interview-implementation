@@ -9,12 +9,18 @@ If you only want to execute the project, please see Deployment notes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+If you want to run the code, then you will need the following software installed
 
 ```
 Docker 19.03.8
 Apache Maven 3.6.3
 Java 1.0.8_241
+```
+
+If you just want to execute a stable version of the project descripted in the Deployment section, you will just need the following instaled
+
+```
+Docker 19.03.8
 ```
 
 ### Installing
