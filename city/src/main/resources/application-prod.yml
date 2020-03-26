@@ -1,1 +1,5 @@
-
+info:
+  app:
+    name: City REST API
+    description: City microservice for the spring boot interview challenge
+    version: 1
