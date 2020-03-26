@@ -51,18 +51,24 @@ And then running the following command to bring up 3 docker containers
 docker-compose up
 ```
 
-Then, you acess the endpoints at
+Then, you acess the endpoints below to check for health status
 
 ```
-localhost:8081/clients
-localhost:8082/cities
+localhost:8081/actuator/health
+localhost:8082/actuator/health
+```
+You should see the following return
+
+```
+{
+    "status": "UP"
+}
 ```
 
 ## Built With
 
 * [Spring Boot](https://spring.io/projects/spring-boot) - The framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [Java](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Authors
 

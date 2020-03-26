@@ -1,3 +1,11 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      database: finalchallenge
+      host: mongo
+      port: 27017
 info:
   app:
     name: City REST API

@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  mongo:
+    image: mongo:3.2.4
+    container_name: mongo
+    ports:
+    - 27017:27017
+    restart: always
+
+  client:
+    container_name: client_microservice
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports: 
+      - "8081:8081"
+    depends_on: 
+      - mongo
+    restart: always
+
+  city:
+    container_name: city_microservice
+    build:
+      context: ./city
+      dockerfile: Dockerfile
+    ports: 
+      - "8082:8082"
+    depends_on: 
+      - mongo
+    restart: always
