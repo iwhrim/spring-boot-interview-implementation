@@ -16,7 +16,7 @@ basePath: /
 
 tags:
   - name: client-controller
-    description: Client Controller to control requests to /client
+    description: Client Controller to control requests to /clients
 
 paths:
 
